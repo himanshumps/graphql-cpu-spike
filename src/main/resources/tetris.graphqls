@@ -1,0 +1,89 @@
+schema {
+  query: Query
+}
+
+#Query root
+type Query {
+  getData(
+    ia: String
+  ):
+  ArrangementwithallDetails
+}
+
+type ArrangementwithallDetails {
+  effective_timestamp: String
+  end_timestamp: String
+  experiences: [ArrangementwithallDetailsExperiences]
+  jurisdiction: Jurisdiction
+  product: String
+}
+
+type ArrangementwithallDetailsDigitalAssets {
+  category: String
+  default: Boolean
+  identifier: String
+}
+
+type ArrangementwithallDetailsExperiences {
+  available_to: String
+  values: [ArrangementwithallDetailsValues]
+}
+
+type ArrangementwithallDetailsLegalNames {
+  language: String
+  value: String
+}
+
+type ArrangementwithallDetailsValues {
+  digital_assets: [ArrangementwithallDetailsDigitalAssets]
+  features(names: [String]): [FeatureWithAllDetails]
+  identifier: String
+  legal_names: [ArrangementwithallDetailsLegalNames]
+  name: String
+}
+
+type FeatureWithAllDetails {
+  configurations(names: [String]): [OneOfConfigurationsItems]
+  embedded: Boolean
+  identifier: String
+  legal_names: [FeatureWithIdentifierLegalNames]
+  name: String
+  related_features: [FeatureWithIdentifierRelatedFeatures]
+  terms(names: [String]): [GenericTermWithIdentifier]
+}
+
+type FeatureWithIdentifierLegalNames {
+  language: String
+  value: String
+}
+
+
+type FeatureWithIdentifierRelatedFeatures {
+  context: String
+  identifiers: [String]
+}
+
+type GenericTermWithIdentifier {
+    name: String
+    identifier: String
+    legal_names: [ArrangementwithallDetailsLegalNames]
+    values: JSON
+}
+
+type Jurisdiction {
+  category: String
+  name: String
+}
+
+type OneOfConfigurationsItems {
+    identifier: String
+    category: String
+    applicable_to: String
+    name: String
+    values: JSON
+
+}
+
+scalar Instant
+
+scalar JSON

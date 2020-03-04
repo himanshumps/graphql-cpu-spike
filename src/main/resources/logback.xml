@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ASYNC_CONSOLE" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold> 
+        <appender-ref ref="CONSOLE"/>
+        <queueSize>1000000</queueSize> 
+        <includeCallerData>false</includeCallerData>
+        <neverBlock>true</neverBlock>
+    </appender>
+
+    <logger name="com.amex.pace.pace_common_module.logging" level="INFO"/>
+    <logger name="com.amex.pace.pace_common_module.couchbase" level="INFO"/>
+    <logger name="com.amex.pace.pace_product_arrangement" level="INFO" />
+    <logger name="com.couchbase" level="INFO"/>
+	 <!--<logger name="javax.mail" level="TRACE" />-->
+    <!--
+    <logger name="com.amex.pace.pace_product_arrangement.verticle.VerticleGet" level="INFO"/>
+    <logger name="com.amex.pace.pace_product_arrangement.verticle.VerticlePost" level="INFO"/>
+	<logger name="com.amex.pace.pace_product_arrangement.verticle.VerticlePut" level="INFO"/>
+	-->
+	<root level="INFO">
+	    <!-- Use Sync logger as Async logger might be causing OOM -->
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>
