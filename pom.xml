@@ -23,7 +23,7 @@
         <exec.mainClass>com.test.graphql.Application</exec.mainClass>
 
         <!-- Dependency Versions -->
-        <vertx.version>3.8.5</vertx.version>
+        <vertx.version>3.9.4</vertx.version>
         <logback.version>1.2.3</logback.version>
         <!-- Plugin Versions -->
         <maven-shade-plugin.version>3.2.1</maven-shade-plugin.version>
